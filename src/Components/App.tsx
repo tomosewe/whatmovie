@@ -1,11 +1,18 @@
-import * as React from 'react';
-import './App.css';
+import "./App.css";
+import * as React from "react";
+import Navigation from "./Navigation";
+import MovieCards from "./MovieCards";
+import { Container } from "reactstrap";
 
-class App extends React.Component {
+class App extends React.Component<{}, {}> {
   public render() {
     return (
       <React.Fragment>
-        <h1>What movie should I watch?</h1>
+        <Navigation />
+        <br />
+        <Container>
+          <MovieCards />
+        </Container>
       </React.Fragment>
     );
   }

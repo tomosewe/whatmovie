@@ -4,41 +4,16 @@ import { getMoviesFromParams } from "../Services/Api";
 import Movie from "./Movie";
 import * as ReactInputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
+import years from "../Data/years";
+import genres from "../Data/genres";
 
 const InputRange: typeof ReactInputRange.default = ReactInputRange as any;
 
 interface State {
   movies: any;
+  votes: any;
   year: number;
 }
-
-const years = [
-  1994,
-  1995,
-  1996,
-  1997,
-  1998,
-  1999,
-  2000,
-  2001,
-  2002,
-  2003,
-  2004,
-  2005,
-  2006,
-  2007,
-  2008,
-  2009,
-  2010,
-  2011,
-  2012,
-  2013,
-  2014,
-  2015,
-  2016,
-  2017,
-  2018
-];
 
 class MovieCards extends React.Component<{}, State> {
   constructor(props: any) {
@@ -46,22 +21,29 @@ class MovieCards extends React.Component<{}, State> {
     const randomYear = years[Math.floor(Math.random() * years.length)];
     this.state = {
       movies: [],
+      votes: { max: 10, min: 5 },
       year: randomYear
     };
   }
   public async componentDidMount() {
-    this.getMovies(2004);
+    this.getMovies();
   }
 
-  getMovies = async (year: number) => {
-    const movies = await getMoviesFromParams(this.state.year);
+  getMovies = async () => {
+    const movies = await getMoviesFromParams(this.state.year, this.state.votes.min, this.state.votes.max);
     console.log(movies);
     this.setState({ movies: movies.results });
   };
 
   onYearChange = (year: number) => {
     this.setState({ year }, () => {
-      this.getMovies(this.state.year);
+      this.getMovies();
+    });
+  };
+
+  onVotesChange = (votes: any) => {
+    this.setState({ votes }, () => {
+      this.getMovies();
     });
   };
 
@@ -76,6 +58,27 @@ class MovieCards extends React.Component<{}, State> {
               value={this.state.year}
               onChange={this.onYearChange}
             />
+          </Col>
+          <Col lg={6}>
+            <InputRange
+              maxValue={10}
+              minValue={0}
+              value={this.state.votes}
+              onChange={this.onVotesChange} />
+          </Col>
+        </Row>
+        <br />
+        <br />
+        <Row>
+          <Col>
+            {genres.map((genre: any) => (
+              <div className="pretty p-default p-round p-thick">
+                <input type="checkbox" />
+                <div className="state p-primary-o">
+                  <label>{genre.name}</label>
+                </div>
+              </div>
+            ))}
           </Col>
         </Row>
         <br />

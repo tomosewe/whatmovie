@@ -2,6 +2,9 @@ const BASE_URL = "https://api.themoviedb.org/";
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const URL_END = "&language=en-US&page=1";
+const US_LANG = "&language=en-US";
+const SORT_BY_POPULARITY = "&sort_by=popularity.desc";
+const CERT = "&certification_country=US&certification.lte=NC-17";
 
 export async function getMovie() {
   const endpoint = "3/movie/550";
@@ -18,11 +21,11 @@ export async function getTopRatedMovies() {
   return await response.json();
 }
 
-export async function getMoviesFromParams(year: number) {
-  // example: https://api.themoviedb.org/3/discover/movie
-  // ?api_key=404c5f051b1105c7bfdc80d81d59107b&language=en-US&sort_by=popularity.desc&page=1&primary_release_year=1994
+export async function getMoviesFromParams(year: number, minVotes: number, maxVotes: number) {
   const endpoint = "3/discover/movie";
-  const discoverEnd = `&language=en-US&sort_by=popularity.desc&page=1&primary_release_year=${year}`;
+  const filterByYear = `&primary_release_year=${year}`;
+  const filterByVotes = `&vote_average.gte=${minVotes}&vote_average.lte=${maxVotes}`;
+  const discoverEnd = `&page=1${US_LANG}${SORT_BY_POPULARITY}${CERT}${filterByYear}${filterByVotes}`;
   const url = `${BASE_URL}${endpoint}?api_key=${API_KEY}${discoverEnd}`;
   const response = await fetch(url);
   return await response.json();

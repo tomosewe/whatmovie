@@ -8,12 +8,13 @@ import {
   NavItem,
   NavLink
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
 interface State {
   isOpen: boolean;
 }
 
-class Navigation extends React.Component<{}, State> {
+class Header extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
 
@@ -36,6 +37,16 @@ class Navigation extends React.Component<{}, State> {
           <Collapse isOpen={this.state.isOpen} navbar={true}>
             <Nav className="ml-auto" navbar={true}>
               <NavItem>
+                <Link className="nav-link" to="/about">
+                  About
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link className="nav-link" to="/random">
+                  Random
+                </Link>
+              </NavItem>
+              <NavItem>
                 <NavLink
                   href="https://github.com/tomosewe/whatmovie"
                   target="_blank"
@@ -52,4 +63,4 @@ class Navigation extends React.Component<{}, State> {
   }
 }
 
-export default Navigation;
+export default Header;

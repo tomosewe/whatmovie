@@ -1,18 +1,15 @@
 import "./App.css";
 import * as React from "react";
-import Navigation from "./Navigation";
-import MovieCards from "./MovieCards";
-import { Container } from "reactstrap";
+import Header from "./Header";
+import Main from "./Main";
 
 class App extends React.Component<{}, {}> {
   public render() {
     return (
       <React.Fragment>
-        <Navigation />
+        <Header />
         <br />
-        <Container>
-          <MovieCards />
-        </Container>
+        <Main />
       </React.Fragment>
     );
   }

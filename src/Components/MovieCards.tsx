@@ -22,8 +22,8 @@ class MovieCards extends React.Component<{}, State> {
   render() {
     return (
       <CardColumns>
-        {this.state.movies.map((m: any, index: number) => (
-          <Movie key={index} movie={m} />
+        {this.state.movies.map((movie: any) => (
+          <Movie key={movie.id} movie={movie} />
         ))}
       </CardColumns>
     );

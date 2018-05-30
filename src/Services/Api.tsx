@@ -17,3 +17,13 @@ export async function getTopRatedMovies() {
   const response = await fetch(url);
   return await response.json();
 }
+
+export async function getMoviesFromParams(year: number) {
+  // example: https://api.themoviedb.org/3/discover/movie
+  // ?api_key=404c5f051b1105c7bfdc80d81d59107b&language=en-US&sort_by=popularity.desc&page=1&primary_release_year=1994
+  const endpoint = "3/discover/movie";
+  const discoverEnd = `&language=en-US&sort_by=popularity.desc&page=1&primary_release_year=${year}`;
+  const url = `${BASE_URL}${endpoint}?api_key=${API_KEY}${discoverEnd}`;
+  const response = await fetch(url);
+  return await response.json();
+}

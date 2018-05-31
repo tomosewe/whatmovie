@@ -21,14 +21,16 @@ export async function getTopRatedMovies() {
 }
 
 export async function getMoviesFromParams(
-  year: number,
+  years: any,
   minVotes: number,
   maxVotes: number,
   selectedGenres: any
 ) {
   // make sure params exist before adding to api call?
   const endpoint = "3/discover/movie";
-  const filterByYear = `&primary_release_year=${year}`;
+  const filterByYear = `&primary_release_date.gte=${
+    years.min
+  }&primary_release_date.lte=${years.max}`;
   const filterByVotes = `&vote_average.gte=${minVotes}&vote_average.lte=${maxVotes}`;
   let discoverEnd = `&page=1${US_LANG}${SORT_BY_POPULARITY}${CERT}${filterByYear}${filterByVotes}`;
   if (selectedGenres.size > 0) {

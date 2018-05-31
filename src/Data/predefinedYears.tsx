@@ -1,4 +1,4 @@
-const years: any = [
+const predefinedYears: any = [
   1994,
   1995,
   1996,
@@ -26,4 +26,4 @@ const years: any = [
   2018
 ];
 
-export default years;
+export default predefinedYears;

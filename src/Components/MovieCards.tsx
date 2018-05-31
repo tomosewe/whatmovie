@@ -6,9 +6,12 @@ import {
   Button,
   Card,
   CardHeader,
-  CardBody
+  CardBody,
+  InputGroup,
+  InputGroupAddon,
+  Input
 } from "reactstrap";
-import { getMoviesFromParams } from "../Services/Api";
+import { getMoviesFromParams, getMoviesBySearchString } from "../Services/Api";
 import Movie from "./Movie";
 import * as ReactInputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
@@ -20,6 +23,7 @@ const InputRange: typeof ReactInputRange.default = ReactInputRange as any;
 
 interface State {
   movies: any;
+  searchInput: string;
   votes: any;
   years: any;
 }
@@ -32,6 +36,7 @@ class MovieCards extends React.Component<{}, State> {
       predefinedYears[Math.floor(Math.random() * predefinedYears.length)];
     this.state = {
       movies: [],
+      searchInput: "",
       votes: { max: 10, min: 5 },
       years: {
         max: predefinedYears[predefinedYears.length - 1],
@@ -58,6 +63,11 @@ class MovieCards extends React.Component<{}, State> {
     this.setState({ movies: movies.results });
   };
 
+  getMoviesBySearchParam = async (searchString: string) => {
+    const movies = await getMoviesBySearchString(searchString);
+    this.setState({ movies: movies.results });
+  };
+
   onYearChange = (years: any) => {
     this.setState({ years });
   };
@@ -69,6 +79,20 @@ class MovieCards extends React.Component<{}, State> {
   filterMovies = () => {
     // set state of genres? then call get movies in callback?
     this.getMovies();
+  };
+
+  submitSearch = () => {
+    this.getMoviesBySearchParam(this.state.searchInput);
+  };
+
+  handleChange = (e: any) => {
+    this.setState({ searchInput: e.target.value });
+  };
+
+  handleKeyPress = (e: any) => {
+    if (e.key === "Enter") {
+      this.getMoviesBySearchParam(this.state.searchInput);
+    }
   };
 
   toggleCheckbox = (label: string) => {
@@ -94,6 +118,23 @@ class MovieCards extends React.Component<{}, State> {
   render() {
     return (
       <React.Fragment>
+        <Row>
+          <Col>
+            <InputGroup>
+              <Input
+                placeholder="Search for a movie here..."
+                onChange={this.handleChange}
+                onKeyPress={this.handleKeyPress}
+              />
+              <InputGroupAddon addonType="append">
+                <Button color="secondary" onClick={this.submitSearch}>
+                  Search
+                </Button>
+              </InputGroupAddon>
+            </InputGroup>
+          </Col>
+        </Row>
+        <br />
         <Row>
           <Col lg={6}>
             <Card>

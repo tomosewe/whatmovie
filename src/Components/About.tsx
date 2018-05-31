@@ -1,5 +1,9 @@
 import * as React from "react";
 
+const LogoStyles = {
+  width: "200px"
+};
+
 class About extends React.Component<{}, {}> {
   public render() {
     return (
@@ -22,7 +26,7 @@ class About extends React.Component<{}, {}> {
           <img
             src="images/tmdblogo.png"
             alt="The Movie DB"
-            style={{ width: "200px" }}
+            style={LogoStyles}
           />
         </a>
         <p>

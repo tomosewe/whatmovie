@@ -42,11 +42,6 @@ class Header extends React.Component<{}, State> {
                 </Link>
               </NavItem>
               <NavItem>
-                <Link className="nav-link" to="/random">
-                  Random
-                </Link>
-              </NavItem>
-              <NavItem>
                 <NavLink
                   href="https://github.com/tomosewe/whatmovie"
                   target="_blank"

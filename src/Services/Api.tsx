@@ -14,18 +14,26 @@ export async function getMovie() {
 }
 
 export async function getTopRatedMovies() {
-  // example url:"https://api.themoviedb.org/3/movie/top_rated?api_key=<<api_key>>&language=en-US&page=1";
   const endpoint = "3/movie/top_rated";
   const url = `${BASE_URL}${endpoint}?api_key=${API_KEY}${URL_END}`;
   const response = await fetch(url);
   return await response.json();
 }
 
-export async function getMoviesFromParams(year: number, minVotes: number, maxVotes: number) {
+export async function getMoviesFromParams(
+  year: number,
+  minVotes: number,
+  maxVotes: number,
+  selectedGenres: any
+) {
+  // make sure params exist before adding to api call?
   const endpoint = "3/discover/movie";
   const filterByYear = `&primary_release_year=${year}`;
   const filterByVotes = `&vote_average.gte=${minVotes}&vote_average.lte=${maxVotes}`;
-  const discoverEnd = `&page=1${US_LANG}${SORT_BY_POPULARITY}${CERT}${filterByYear}${filterByVotes}`;
+  let discoverEnd = `&page=1${US_LANG}${SORT_BY_POPULARITY}${CERT}${filterByYear}${filterByVotes}`;
+  if (selectedGenres.size > 0) {
+    discoverEnd += "&with_genres=" + Array.from(selectedGenres).join("|");
+  }
   const url = `${BASE_URL}${endpoint}?api_key=${API_KEY}${discoverEnd}`;
   const response = await fetch(url);
   return await response.json();

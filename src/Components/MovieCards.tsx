@@ -1,11 +1,12 @@
 import * as React from "react";
-import { CardColumns, Row, Col } from "reactstrap";
+import { CardColumns, Row, Col, Button } from "reactstrap";
 import { getMoviesFromParams } from "../Services/Api";
 import Movie from "./Movie";
 import * as ReactInputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import years from "../Data/years";
 import genres from "../Data/genres";
+import Checkbox from "./Checkbox";
 
 const InputRange: typeof ReactInputRange.default = ReactInputRange as any;
 
@@ -16,6 +17,7 @@ interface State {
 }
 
 class MovieCards extends React.Component<{}, State> {
+  selectedGenres: Set<any>;
   constructor(props: any) {
     super(props);
     const randomYear = years[Math.floor(Math.random() * years.length)];
@@ -25,27 +27,57 @@ class MovieCards extends React.Component<{}, State> {
       year: randomYear
     };
   }
-  public async componentDidMount() {
+
+  async componentDidMount() {
     this.getMovies();
   }
 
+  componentWillMount() {
+    this.selectedGenres = new Set();
+  }
+
   getMovies = async () => {
-    const movies = await getMoviesFromParams(this.state.year, this.state.votes.min, this.state.votes.max);
-    console.log(movies);
+    const movies = await getMoviesFromParams(
+      this.state.year,
+      this.state.votes.min,
+      this.state.votes.max,
+      this.selectedGenres
+    );
     this.setState({ movies: movies.results });
   };
 
   onYearChange = (year: number) => {
-    this.setState({ year }, () => {
-      this.getMovies();
-    });
+    this.setState({ year });
   };
 
   onVotesChange = (votes: any) => {
-    this.setState({ votes }, () => {
-      this.getMovies();
-    });
+    this.setState({ votes });
   };
+
+  filterMovies = () => {
+    // set state of genres? then call get movies in callback?
+    this.getMovies();
+  };
+
+  toggleCheckbox = (label: string) => {
+    if (this.selectedGenres.has(label)) {
+      this.selectedGenres.delete(label);
+    } else {
+      this.selectedGenres.add(label);
+    }
+  };
+
+  createCheckbox = (genre: any) => (
+    <Checkbox
+      genreName={genre.name}
+      genreId={genre.id}
+      handleCheckboxChange={this.toggleCheckbox}
+      key={genre.id}
+    />
+  );
+
+  createCheckboxes = () =>
+    genres.map((genre: any) => this.createCheckbox(genre));
 
   render() {
     return (
@@ -64,21 +96,21 @@ class MovieCards extends React.Component<{}, State> {
               maxValue={10}
               minValue={0}
               value={this.state.votes}
-              onChange={this.onVotesChange} />
+              onChange={this.onVotesChange}
+            />
           </Col>
         </Row>
         <br />
         <br />
         <Row>
+          <Col>{this.createCheckboxes()}</Col>
+        </Row>
+        <br />
+        <Row>
           <Col>
-            {genres.map((genre: any) => (
-              <div className="pretty p-default p-round p-thick">
-                <input type="checkbox" />
-                <div className="state p-primary-o">
-                  <label>{genre.name}</label>
-                </div>
-              </div>
-            ))}
+            <Button color="danger" onClick={this.filterMovies}>
+              Filter movies
+            </Button>
           </Col>
         </Row>
         <br />

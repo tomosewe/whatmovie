@@ -1,5 +1,13 @@
 import * as React from "react";
-import { CardColumns, Row, Col, Button } from "reactstrap";
+import {
+  CardColumns,
+  Row,
+  Col,
+  Button,
+  Card,
+  CardHeader,
+  CardBody
+} from "reactstrap";
 import { getMoviesFromParams } from "../Services/Api";
 import Movie from "./Movie";
 import * as ReactInputRange from "react-input-range";
@@ -27,7 +35,7 @@ class MovieCards extends React.Component<{}, State> {
       votes: { max: 10, min: 5 },
       years: {
         max: predefinedYears[predefinedYears.length - 1],
-        min: randomYear
+        min: randomYear === 2018 ? randomYear - 1 : randomYear
       }
     };
   }
@@ -88,20 +96,30 @@ class MovieCards extends React.Component<{}, State> {
       <React.Fragment>
         <Row>
           <Col lg={6}>
-            <InputRange
-              maxValue={2018}
-              minValue={1930}
-              value={this.state.years}
-              onChange={this.onYearChange}
-            />
+            <Card>
+              <CardHeader>Year of release</CardHeader>
+              <CardBody>
+                <InputRange
+                  maxValue={2018}
+                  minValue={1930}
+                  value={this.state.years}
+                  onChange={this.onYearChange}
+                />
+              </CardBody>
+            </Card>
           </Col>
           <Col lg={6}>
-            <InputRange
-              maxValue={10}
-              minValue={0}
-              value={this.state.votes}
-              onChange={this.onVotesChange}
-            />
+            <Card>
+              <CardHeader>Ratings</CardHeader>
+              <CardBody>
+                <InputRange
+                  maxValue={10}
+                  minValue={0}
+                  value={this.state.votes}
+                  onChange={this.onVotesChange}
+                />
+              </CardBody>
+            </Card>
           </Col>
         </Row>
         <br />
@@ -112,9 +130,11 @@ class MovieCards extends React.Component<{}, State> {
         <br />
         <Row>
           <Col>
-            <Button color="danger" onClick={this.filterMovies}>
-              Filter movies
-            </Button>
+            <Card>
+              <Button color="danger" onClick={this.filterMovies}>
+                Filter movies
+              </Button>
+            </Card>
           </Col>
         </Row>
         <br />

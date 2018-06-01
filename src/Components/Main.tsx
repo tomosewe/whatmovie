@@ -3,8 +3,18 @@ import MovieCards from "./MovieCards";
 import About from "./About";
 import { Container } from "reactstrap";
 import { Switch, Route } from "react-router-dom";
+import * as ReactGA from "react-ga";
+
+ReactGA.initialize("UA-80655492-3");
 
 class Main extends React.Component<{}, {}> {
+  componentDidMount() {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
+  componentDidUpdate() {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }
+
   public render() {
     return (
       <main>

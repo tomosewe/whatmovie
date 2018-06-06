@@ -6,13 +6,11 @@ import {
   Button,
   Card,
   CardHeader,
-  CardBody,
-  InputGroup,
-  InputGroupAddon,
-  Input
+  CardBody
 } from "reactstrap";
 import { getMoviesFromParams, getMoviesBySearchString } from "../Services/Api";
 import Movie from "./Movie";
+import Searchbar from "./Common/Searchbar";
 import * as ReactInputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import predefinedYears from "../Data/predefinedYears";
@@ -118,22 +116,11 @@ class MovieCards extends React.Component<{}, State> {
   render() {
     return (
       <React.Fragment>
-        <Row>
-          <Col>
-            <InputGroup>
-              <Input
-                placeholder="Search for a movie here..."
-                onChange={this.handleChange}
-                onKeyPress={this.handleKeyPress}
-              />
-              <InputGroupAddon addonType="append">
-                <Button color="secondary" onClick={this.submitSearch}>
-                  Search
-                </Button>
-              </InputGroupAddon>
-            </InputGroup>
-          </Col>
-        </Row>
+        <Searchbar
+          handleChange={this.handleChange}
+          handleKeyPress={this.handleKeyPress}
+          submitSearch={this.submitSearch}
+        />
         <br />
         <Row>
           <Col lg={6}>

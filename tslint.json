@@ -1,5 +1,6 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "tslint.autoFixOnSav": true,
   "linterOptions": {
     "exclude": ["config/**/*.js", "node_modules/**/*.ts"]
   },

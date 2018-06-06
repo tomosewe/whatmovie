@@ -125,7 +125,7 @@ class MovieCards extends React.Component<{}, State> {
             <SliderCard
               header="Ratings"
               maxValue={10}
-              minValue={10}
+              minValue={0}
               inputValues={this.state.votes}
               onSliderChange={this.onVotesChange}
             />

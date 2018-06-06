@@ -1,23 +1,12 @@
 import * as React from "react";
-import {
-  CardColumns,
-  Row,
-  Col,
-  Button,
-  Card,
-  CardHeader,
-  CardBody
-} from "reactstrap";
+import { CardColumns, Row, Col, Button, Card } from "reactstrap";
 import { getMoviesFromParams, getMoviesBySearchString } from "../Services/Api";
 import Movie from "./Movie";
 import Searchbar from "./Common/Searchbar";
-import * as ReactInputRange from "react-input-range";
-import "react-input-range/lib/css/index.css";
 import predefinedYears from "../Data/predefinedYears";
 import genres from "../Data/genres";
 import Checkbox from "./Checkbox";
-
-const InputRange: typeof ReactInputRange.default = ReactInputRange as any;
+import SliderCard from "./Common/SliderCard";
 
 interface State {
   movies: any;
@@ -124,30 +113,22 @@ class MovieCards extends React.Component<{}, State> {
         <br />
         <Row>
           <Col lg={6}>
-            <Card>
-              <CardHeader>Year of release</CardHeader>
-              <CardBody>
-                <InputRange
-                  maxValue={2018}
-                  minValue={1930}
-                  value={this.state.years}
-                  onChange={this.onYearChange}
-                />
-              </CardBody>
-            </Card>
+            <SliderCard
+              header="Year of release"
+              maxValue={2018}
+              minValue={1930}
+              inputValues={this.state.years}
+              onSliderChange={this.onYearChange}
+            />
           </Col>
           <Col lg={6}>
-            <Card>
-              <CardHeader>Ratings</CardHeader>
-              <CardBody>
-                <InputRange
-                  maxValue={10}
-                  minValue={0}
-                  value={this.state.votes}
-                  onChange={this.onVotesChange}
-                />
-              </CardBody>
-            </Card>
+            <SliderCard
+              header="Ratings"
+              maxValue={10}
+              minValue={10}
+              inputValues={this.state.votes}
+              onSliderChange={this.onVotesChange}
+            />
           </Col>
         </Row>
         <br />

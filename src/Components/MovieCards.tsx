@@ -104,7 +104,7 @@ class MovieCards extends React.Component<{}, State> {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <Searchbar
           handleChange={this.handleChange}
           handleKeyPress={this.handleKeyPress}
@@ -152,7 +152,7 @@ class MovieCards extends React.Component<{}, State> {
             <Movie key={movie.id} movie={movie} />
           ))}
         </CardColumns>
-      </React.Fragment>
+      </>
     );
   }
 }

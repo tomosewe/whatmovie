@@ -2,6 +2,7 @@ import * as React from "react";
 import MovieCards from "./MovieCards";
 import About from "./About";
 import SingleMovie from "./SingleMovie";
+import NotFound from "./NotFound";
 import { Container } from "reactstrap";
 import { Switch, Route } from "react-router-dom";
 import * as ReactGA from "react-ga";
@@ -24,6 +25,7 @@ class Main extends React.Component<{}, {}> {
             <Route path="/about" component={About} />
             <Route path="/single" component={SingleMovie} />
             <Route exact={true} path="/" component={MovieCards} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </Container>
       </main>

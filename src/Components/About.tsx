@@ -7,7 +7,7 @@ const LogoStyles = {
 class About extends React.Component<{}, {}> {
   public render() {
     return (
-      <React.Fragment>
+      <>
         <p>
           Created by{" "}
           <a
@@ -62,7 +62,7 @@ class About extends React.Component<{}, {}> {
             CC 3.0 BY
           </a>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

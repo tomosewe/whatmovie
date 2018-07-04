@@ -2,6 +2,7 @@ import * as React from "react";
 import { CardColumns, Row, Col, Button, Card } from "reactstrap";
 import { getMoviesFromParams, getMoviesBySearchString } from "../Services/Api";
 import Movie from "./Movie";
+import Poster from "./Poster";
 import Searchbar from "./Common/Searchbar";
 import predefinedYears from "../Data/predefinedYears";
 import genres from "../Data/genres";
@@ -13,6 +14,7 @@ interface State {
   searchInput: string;
   votes: any;
   years: any;
+  showPosters: boolean;
 }
 
 class MovieCards extends React.Component<{}, State> {
@@ -24,6 +26,7 @@ class MovieCards extends React.Component<{}, State> {
     this.state = {
       movies: [],
       searchInput: "",
+      showPosters: true,
       votes: { max: 10, min: 5 },
       years: {
         max: predefinedYears[predefinedYears.length - 1],
@@ -102,6 +105,30 @@ class MovieCards extends React.Component<{}, State> {
   createCheckboxes = () =>
     genres.map((genre: any) => this.createCheckbox(genre));
 
+  displayMovieCards = () => {
+    return (
+      <CardColumns>
+        {this.state.movies.map((movie: any) => (
+          <Movie key={movie.id} movie={movie} />
+        ))};
+      </CardColumns>
+    );
+  };
+
+  displayPosters = () => {
+    return (
+      <div className="grid-wrapper">
+        {this.state.movies.map((movie: any) => (
+          <Poster key={movie.id} movie={movie} />
+        ))}
+      </div>
+    );
+  };
+
+  toggleView = () => {
+    this.setState({ showPosters: !this.state.showPosters });
+  };
+
   render() {
     return (
       <>
@@ -147,11 +174,14 @@ class MovieCards extends React.Component<{}, State> {
           </Col>
         </Row>
         <br />
-        <CardColumns>
-          {this.state.movies.map((movie: any) => (
-            <Movie key={movie.id} movie={movie} />
-          ))}
-        </CardColumns>
+        <Button onClick={this.toggleView}>
+          {this.state.showPosters ? "Show as cards" : "Show as posters"}
+        </Button>
+        <br />
+        <br />
+        {this.state.showPosters
+          ? this.displayPosters()
+          : this.displayMovieCards()}
       </>
     );
   }

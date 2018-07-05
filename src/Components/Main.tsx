@@ -25,6 +25,7 @@ class Main extends React.Component<{}, {}> {
             <Route path="/about" component={About} />
             <Route path="/single" component={SingleMovie} />
             <Route exact={true} path="/" component={MovieCards} />
+            <Route path="/:movieId" component={SingleMovie} />
             <Route path="*" component={NotFound} />
           </Switch>
         </Container>

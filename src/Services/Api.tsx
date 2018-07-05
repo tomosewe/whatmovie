@@ -1,3 +1,6 @@
+import * as store from "store";
+// https://github.com/marcuswestin/store.js for local storage
+
 const BASE_URL = "https://api.themoviedb.org/";
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
@@ -37,8 +40,18 @@ export async function getMoviesFromParams(
     queryParams += "&with_genres=" + Array.from(selectedGenres).join("|");
   }
   const url = `${BASE_URL}${DISCOVER_ENDPOINT}?api_key=${API_KEY}${queryParams}`;
+  const date = new Date();
+  const key = `${url}--${date.getMonth()}${date.getFullYear()}`;
+
+  if (store.get(key)) {
+    console.log("displaying cached results from local storage");
+    return store.get(key);
+  }
+
   const response = await fetch(url);
-  return await response.json();
+  const json = await response.json();
+  store.set(key, json);
+  return json;
 }
 
 export async function getMoviesBySearchString(searchString: string) {

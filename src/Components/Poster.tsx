@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const IMAGES_BASE_URL = "https://image.tmdb.org/t/p/";
-const LOGO_SIZE = "w92";
+const LOGO_SIZE = "w154";
 
 interface Props {
   movie: any;

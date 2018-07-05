@@ -6,6 +6,8 @@ Live at [https://whatmovie.tomosewe.com](https://whatmovie.tomosewe.com)
 
 Created with [create-react-app](https://github.com/facebook/create-react-app), [Typescript](https://www.typescriptlang.org/) and [reactstrap](https://reactstrap.github.io/)
 
+Hosted on [Netlify](https://www.netlify.com/)
+
 Data from [TMDB](https://www.themoviedb.org/)
 
 To run locally:

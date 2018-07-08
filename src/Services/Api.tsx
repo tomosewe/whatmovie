@@ -11,6 +11,7 @@ const LANG_PAGE = "&language=en-US&page=1";
 const LANG = "&language=en-US";
 const SORT_BY_POPULARITY = "&sort_by=popularity.desc";
 const CERT = "&certification_country=US&certification.lte=NC-17";
+const PAGES = `&page=`;
 
 export async function getMovie() {
   const endpoint = "3/movie/550";
@@ -30,14 +31,15 @@ export async function getMoviesFromParams(
   years: any,
   minVotes: number,
   maxVotes: number,
-  selectedGenres: any
+  selectedGenres: any,
+  page: number
 ) {
   // make sure params exist before adding to api call?
   const filterByYear = `&primary_release_date.gte=${
     years.min
   }&primary_release_date.lte=${years.max}`;
   const filterByVotes = `&vote_average.gte=${minVotes}&vote_average.lte=${maxVotes}`;
-  let queryParams = `${LANG_PAGE}${SORT_BY_POPULARITY}${CERT}${filterByYear}${filterByVotes}`;
+  let queryParams = `${LANG_PAGE}${SORT_BY_POPULARITY}${CERT}${filterByYear}${filterByVotes}${PAGES}${page}`;
   if (selectedGenres.size > 0) {
     queryParams += "&with_genres=" + Array.from(selectedGenres).join("|");
   }

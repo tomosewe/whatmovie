@@ -44,13 +44,19 @@ class MovieCards extends React.Component<{}, State> {
   }
 
   getMovies = async () => {
-    const movies = await getMoviesFromParams(
-      this.state.years,
-      this.state.votes.min,
-      this.state.votes.max,
-      this.selectedGenres
-    );
-    this.setState({ movies: movies.results });
+    let moviesArray: any[] = [];
+    for (let index = 1; index <= 5; index++) {
+      const movies = await getMoviesFromParams(
+        this.state.years,
+        this.state.votes.min,
+        this.state.votes.max,
+        this.selectedGenres,
+        index
+      );
+      moviesArray = moviesArray.concat(movies.results);
+    }
+
+    this.setState({ movies: moviesArray });
   };
 
   getMoviesBySearchParam = async (searchString: string) => {

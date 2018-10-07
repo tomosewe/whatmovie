@@ -1,15 +1,12 @@
-import * as React from "react";
-import {
-    Container,
-    Row,
-    Col
-} from "reactstrap";
+import * as React from 'react';
+import { Col, Container, Row } from 'reactstrap';
+import { Constants } from './Common/Constants';
 
 const LogoStyles = {
-    width: "75px"
-}
+    width: '75px'
+};
 
-class Footer extends React.Component<{}, {}>{
+class Footer extends React.Component<{}, {}> {
     constructor(props: any) {
         super(props);
     }
@@ -20,15 +17,27 @@ class Footer extends React.Component<{}, {}>{
                 <Container>
                     <Row>
                         <Col className="text-center">
-                            Created by <a href="https://tomosewe.com"
+                            Created by{' '}
+                            <a
+                                href="https://tomosewe.com"
                                 target="_blank"
-                                rel="noopener noreferrer">Tomos Ewe</a>{" "}<img src="images/popcorn16.png" alt="popcorn-icon" />
-                            {" "}This product uses the TMDb API but is not endorsed or certified by TMDb.
+                                rel="noopener noreferrer"
+                                title="tomosewe.com"
+                            >
+                                <span>Tomos Ewe</span>
+                            </a>{' '}
+                            <img
+                                src="images/popcorn16.png"
+                                alt="popcorn-icon"
+                            />{' '}
+                            <span>{Constants.TMDB_DISCLAIMER}</span>
                             <a
                                 href="https://www.themoviedb.org"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                            >{" "}
+                                title="The Movie DB"
+                            >
+                                {' '}
                                 <img
                                     src="images/tmdblogo.png"
                                     alt="The Movie DB"
@@ -39,7 +48,7 @@ class Footer extends React.Component<{}, {}>{
                     </Row>
                 </Container>
             </div>
-        )
+        );
     }
 }
 

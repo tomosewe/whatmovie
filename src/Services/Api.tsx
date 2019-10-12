@@ -39,7 +39,7 @@ export async function getMoviesFromParams(
     years.min
   }&primary_release_date.lte=${years.max}`;
   const filterByVotes = `&vote_average.gte=${minVotes}&vote_average.lte=${maxVotes}`;
-  let queryParams = `${LANG_PAGE}${SORT_BY_POPULARITY}${CERT}${filterByYear}${filterByVotes}${PAGES}${page}`;
+  let queryParams = `${LANG_PAGE}${SORT_BY_POPULARITY}${CERT}${filterByVotes}${PAGES}${page}`;
   if (selectedGenres.size > 0) {
     queryParams += "&with_genres=" + Array.from(selectedGenres).join("|");
   }

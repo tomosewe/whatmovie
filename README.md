@@ -1,5 +1,7 @@
 # [What movie should I watch?](https://whatmovie.tomosewe.com)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c5a5bfa9-10cd-4df7-a903-baa5a4632add/deploy-status)](https://app.netlify.com/sites/whatmovie/deploys)
+
 ![Screenshot](https://github.com/tomosewe/whatmovie/blob/master/public/images/screenshot.png 'Screenshot')
 
 Live at [https://whatmovie.tomosewe.com](https://whatmovie.tomosewe.com)

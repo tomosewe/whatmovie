@@ -35,9 +35,9 @@ export async function getMoviesFromParams(
   page: number
 ) {
   // make sure params exist before adding to api call?
-  const filterByYear = `&primary_release_date.gte=${
-    years.min
-  }&primary_release_date.lte=${years.max}`;
+  // const filterByYear = `&primary_release_date.gte=${
+  //   years.min
+  //   }&primary_release_date.lte=${years.max}`;
   const filterByVotes = `&vote_average.gte=${minVotes}&vote_average.lte=${maxVotes}`;
   let queryParams = `${LANG_PAGE}${SORT_BY_POPULARITY}${CERT}${filterByVotes}${PAGES}${page}`;
   if (selectedGenres.size > 0) {

@@ -15,10 +15,6 @@ interface Props {
 }
 
 class Searchbar extends React.Component<Props, {}> {
-  constructor(props: any) {
-    super(props);
-  }
-
   render() {
     return (
       <Row>

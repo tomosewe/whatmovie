@@ -14,10 +14,6 @@ interface Props {
 }
 
 class SliderCard extends React.Component<Props, {}> {
-  constructor(props: any) {
-    super(props);
-  }
-
   render() {
     return (
       <Card>

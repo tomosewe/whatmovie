@@ -10,10 +10,6 @@ interface Props {
 }
 
 class Movie extends React.Component<Props, {}> {
-  constructor(props: any) {
-    super(props);
-  }
-
   render() {
     const releaseYear = this.props.movie.release_date.substring(0, 4);
     const trailerLink = getTrailerLink(this.props.movie);

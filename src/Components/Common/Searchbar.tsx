@@ -1,40 +1,39 @@
-import * as React from "react";
 import {
   Row,
   Col,
   Button,
   InputGroup,
   InputGroupAddon,
-  Input
+  Input,
 } from "reactstrap";
 
-interface Props {
+const Searchbar = ({
+  handleChange,
+  handleKeyPress,
+  submitSearch,
+}: {
   handleChange: any;
   handleKeyPress: any;
   submitSearch: any;
-}
-
-class Searchbar extends React.Component<Props, {}> {
-  render() {
-    return (
-      <Row>
-        <Col>
-          <InputGroup>
-            <Input
-              placeholder="Search for a movie here..."
-              onChange={this.props.handleChange}
-              onKeyPress={this.props.handleKeyPress}
-            />
-            <InputGroupAddon addonType="append">
-              <Button color="secondary" onClick={this.props.submitSearch}>
-                Search
-              </Button>
-            </InputGroupAddon>
-          </InputGroup>
-        </Col>
-      </Row>
-    );
-  }
-}
+}) => {
+  return (
+    <Row>
+      <Col>
+        <InputGroup>
+          <Input
+            placeholder="Search for a movie here..."
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+          />
+          <InputGroupAddon addonType="append">
+            <Button color="secondary" onClick={submitSearch}>
+              Search
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>
+      </Col>
+    </Row>
+  );
+};
 
 export default Searchbar;

@@ -1,34 +1,35 @@
-import * as React from "react";
 import { Card, CardHeader, CardBody } from "reactstrap";
 import * as ReactInputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 
 const InputRange: typeof ReactInputRange.default = ReactInputRange as any;
 
-interface Props {
+const SliderCard = ({
+  header,
+  inputValues,
+  onSliderChange,
+  maxValue,
+  minValue,
+}: {
   header: string;
-  inputValues: any;
-  onSliderChange: any;
+  inputValues: { max: number; min: number };
+  onSliderChange: (years: any) => void;
   maxValue: number;
   minValue: number;
-}
-
-class SliderCard extends React.Component<Props, {}> {
-  render() {
-    return (
-      <Card>
-        <CardHeader>{this.props.header}</CardHeader>
-        <CardBody>
-          <InputRange
-            maxValue={this.props.maxValue}
-            minValue={this.props.minValue}
-            value={this.props.inputValues}
-            onChange={this.props.onSliderChange}
-          />
-        </CardBody>
-      </Card>
-    );
-  }
-}
+}) => {
+  return (
+    <Card>
+      <CardHeader>{header}</CardHeader>
+      <CardBody>
+        <InputRange
+          maxValue={maxValue}
+          minValue={minValue}
+          value={inputValues}
+          onChange={onSliderChange}
+        />
+      </CardBody>
+    </Card>
+  );
+};
 
 export default SliderCard;

@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c5a5bfa9-10cd-4df7-a903-baa5a4632add/deploy-status)](https://app.netlify.com/sites/whatmovie/deploys)
 
-![Screenshot](https://github.com/tomosewe/whatmovie/blob/master/public/images/screenshot.png 'Screenshot')
+![Screenshot](https://github.com/tomosewe/whatmovie/blob/master/public/images/screenshot.png "Screenshot")
 
 Live at [https://whatmovie.tomosewe.com](https://whatmovie.tomosewe.com)
 
@@ -20,3 +20,5 @@ Rename `.env-example` to `.env` and replace `YOUR_KEY_HERE` with your own TMDB A
 npm install
 npm start
 ```
+
+> -////->

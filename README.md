@@ -20,5 +20,3 @@ Rename `.env-example` to `.env` and replace `YOUR_KEY_HERE` with your own TMDB A
 npm install
 npm start
 ```
-
-> -////->

@@ -1,6 +1,6 @@
 import * as React from "react";
 import MovieCards from "./MovieCards";
-import About from "./About";
+import { About } from "../Components";
 import SingleMovie from "./SingleMovie";
 import NotFound from "./NotFound";
 import { Container } from "reactstrap";

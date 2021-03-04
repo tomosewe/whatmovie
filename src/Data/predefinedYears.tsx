@@ -1,4 +1,4 @@
-const predefinedYears: any = [
+const predefinedYears: number[] = [
   1994,
   1995,
   1996,
@@ -23,7 +23,7 @@ const predefinedYears: any = [
   2015,
   2016,
   2017,
-  2018
+  2018,
 ];
 
 export default predefinedYears;

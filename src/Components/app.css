@@ -1,0 +1,14 @@
+.footer {
+  margin-top: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid #e7e7e7;
+  font-size: 12px;
+}
+
+/* grid stuff */
+
+.grid-wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(102px, 1fr));
+}

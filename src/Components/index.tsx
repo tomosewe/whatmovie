@@ -1,4 +1,5 @@
 export * from "./about/about";
+export * from "./app";
 export * from "./footer/footer";
 export * from "./header/header";
 export * from "./movie/movie";
